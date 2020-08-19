@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_BBA88A7C-FD49-48EE-B20A-ED1FEC1D6200" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_7D120810-7E4E-46DC-918C-97D529EC83C9" name="CreateIncidentCheck" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_BBA88A7C-FD49-48EE-B20A-ED1FEC1D6200">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_EF58E9E1-93B2-421F-B0EE-809E58687119" name="playbookevent" isCollection="false">
+    <dmn:itemComponent id="_138715B0-1E09-41BD-8824-8C310B828F84" name="currentDate" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_27C5445A-2899-4E59-ACEB-13C2C2671055" name="incidentCreatedDate" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_F334A3CB-2733-4178-930E-42876DF569D6" name="incidentCreated" isCollection="false">
+      <dmn:typeRef>boolean</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_D4857E00-02CD-4001-BCEA-F9E34EB55F29" name="status" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:businessKnowledgeModel id="_F5D934BC-54E0-4593-A98B-49F48A8BA84E" name="Incident Formula">
+    <dmn:extensionElements/>
+    <dmn:variable id="_BB55D0E4-945F-463A-A42E-FAF7C62F2BE5" name="Incident Formula" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_29E85AB7-1271-4007-878C-BE2C35C4735B" kind="FEEL">
+      <dmn:formalParameter id="_600ED0A6-D26F-4A6A-9718-C4382A588B12" name="incidentAge" typeRef="number"/>
+      <dmn:formalParameter id="_DDC45C48-3638-468A-8336-681460B054F0" name="incidentCreatedDate" typeRef="number"/>
+      <dmn:formalParameter id="_987CA6BC-7090-4751-8C56-E19D1FF8D5A5" name="status" typeRef="string"/>
+      <dmn:formalParameter id="_A2CDF486-3556-4DE6-AF64-149BEBB07003" name="isIncidentCreated" typeRef="boolean"/>
+      <dmn:formalParameter id="_6907877C-6EF4-434F-A718-2A52C0A27179" name="currDate" typeRef="number"/>
+      <dmn:literalExpression id="_91286151-6408-49E9-9549-9E122102C36C">
+        <dmn:text>status = "failed" and isIncidentCreated = true and (currDate - incidentCreatedDate > incidentAge*3600000) or (status = "failed" and isIncidentCreated=false)</dmn:text>
+      </dmn:literalExpression>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:decision id="_2280B212-D2B6-4F59-97DF-1555AE984A3E" name="Create Incident">
+    <dmn:extensionElements/>
+    <dmn:variable id="_0EA69159-ABBA-4567-8739-EA7A364D2CE3" name="Create Incident" typeRef="boolean"/>
+    <dmn:informationRequirement id="_96D0A022-0439-4CCE-92AF-04A48F0D4625">
+      <dmn:requiredInput href="#_50B87B2A-8463-4547-B861-9EF9E0B535FD"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_1A6DEDF6-3503-4884-98B8-377484757509">
+      <dmn:requiredKnowledge href="#_F5D934BC-54E0-4593-A98B-49F48A8BA84E"/>
+    </dmn:knowledgeRequirement>
+    <dmn:invocation id="_B815F0C7-E6D7-424E-B508-735344D05CCF">
+      <dmn:literalExpression id="_59BD29EF-B647-4490-A252-447DB7B35AF7">
+        <dmn:text>Incident Formula</dmn:text>
+      </dmn:literalExpression>
+      <dmn:binding>
+        <dmn:parameter id="_02B63FC3-2F8F-4FE9-8726-0FC336164646" name="incidentAge" typeRef="number"/>
+        <dmn:literalExpression id="_CBDC1703-1465-41CF-9F6C-3FE6A752A582">
+          <dmn:text>24</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_985162AA-8FDF-4D31-83D3-0F3141136A2C" name="incidentCreatedDate" typeRef="number"/>
+        <dmn:literalExpression id="_6390ED15-853D-4352-90C8-BCC99BF0A490">
+          <dmn:text>Playbook Event.incidentCreatedDate</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_DA5C19E5-6CDA-416C-ABED-2A1EB5B836EC" name="status" typeRef="string"/>
+        <dmn:literalExpression id="_4B4385B1-93A5-4A2E-B3EB-12CFFA0DC6CF">
+          <dmn:text>Playbook Event.status</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_B431E4B6-982A-44A1-80E6-3C3CF4E31CA5" name="isIncidentCreated" typeRef="boolean"/>
+        <dmn:literalExpression id="_A19C170A-F54A-4D8E-BC4C-C340507BB5DE">
+          <dmn:text>Playbook Event.incidentCreated</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+      <dmn:binding>
+        <dmn:parameter id="_B9616725-9F0B-4784-B4BE-536C502AE6D7" name="currDate" typeRef="number"/>
+        <dmn:literalExpression id="_822DAAA7-46A6-49AE-AEAC-83BC317917FF">
+          <dmn:text>Playbook Event.currentDate</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+    </dmn:invocation>
+  </dmn:decision>
+  <dmn:inputData id="_50B87B2A-8463-4547-B861-9EF9E0B535FD" name="Playbook Event">
+    <dmn:extensionElements/>
+    <dmn:variable id="_A808B37F-CF3F-42A8-A4A3-8EEED99C637D" name="Playbook Event" typeRef="playbookevent"/>
+  </dmn:inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_91286151-6408-49E9-9549-9E122102C36C">
+            <kie:width>1024.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_29E85AB7-1271-4007-878C-BE2C35C4735B">
+            <kie:width>50.0</kie:width>
+            <kie:width>1024.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B815F0C7-E6D7-424E-B508-735344D05CCF">
+            <kie:width>50.0</kie:width>
+            <kie:width>181.0</kie:width>
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_59BD29EF-B647-4490-A252-447DB7B35AF7"/>
+          <kie:ComponentWidths dmnElementRef="_CBDC1703-1465-41CF-9F6C-3FE6A752A582">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6390ED15-853D-4352-90C8-BCC99BF0A490">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4B4385B1-93A5-4A2E-B3EB-12CFFA0DC6CF">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A19C170A-F54A-4D8E-BC4C-C340507BB5DE">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_822DAAA7-46A6-49AE-AEAC-83BC317917FF">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_F5D934BC-54E0-4593-A98B-49F48A8BA84E" dmnElementRef="_F5D934BC-54E0-4593-A98B-49F48A8BA84E" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="214" y="163" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_2280B212-D2B6-4F59-97DF-1555AE984A3E" dmnElementRef="_2280B212-D2B6-4F59-97DF-1555AE984A3E" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="402" y="163" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_50B87B2A-8463-4547-B861-9EF9E0B535FD" dmnElementRef="_50B87B2A-8463-4547-B861-9EF9E0B535FD" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="401" y="287" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_96D0A022-0439-4CCE-92AF-04A48F0D4625" dmnElementRef="_96D0A022-0439-4CCE-92AF-04A48F0D4625">
+        <di:waypoint x="451" y="312"/>
+        <di:waypoint x="452" y="213"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_1A6DEDF6-3503-4884-98B8-377484757509" dmnElementRef="_1A6DEDF6-3503-4884-98B8-377484757509">
+        <di:waypoint x="264" y="188"/>
+        <di:waypoint x="402" y="188"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
