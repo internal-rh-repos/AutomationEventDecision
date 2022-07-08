@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_C57E89DD-6F36-4590-809A-0B8E742F2676" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_25F0AB43-5AAE-4295-A757-C9338E018EAE" name="ProcessFailureDMN" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_C57E89DD-6F36-4590-809A-0B8E742F2676">
   <dmn:extensionElements/>
   <dmn:itemDefinition id="_7097D184-B38A-4D2F-BE20-12C107F218D5" name="SensuEvents" isCollection="false">
@@ -57,7 +57,8 @@
           <dmn:text>SensuEvents.checkType</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
-      <dmn:output id="_3D0C38DA-154D-4251-B00E-62DB5A6283AF" typeRef="string"/>
+      <dmn:output id="_3D0C38DA-154D-4251-B00E-62DB5A6283AF"/>
+      <dmn:annotation name=""/>
       <dmn:rule id="_A97BD987-21DA-4AEA-9AEA-D1E6F115E16E">
         <dmn:inputEntry id="_B414FC81-D0E9-43BC-84B2-75CCA73B5583">
           <dmn:text>true</dmn:text>
@@ -68,6 +69,9 @@
         <dmn:outputEntry id="_EE5E4690-D484-4A4F-9075-175AA244317E">
           <dmn:text>"package_facts"</dmn:text>
         </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
       </dmn:rule>
       <dmn:rule id="_C352B15B-5478-4AA9-822C-B88BF3F75240">
         <dmn:inputEntry id="_FD7A0A59-1347-4606-8464-2CC92F099A27">
@@ -79,6 +83,9 @@
         <dmn:outputEntry id="_86D693B6-5769-4DEA-95D3-79B7B2C3687C">
           <dmn:text>"ansible_playbook_0866"</dmn:text>
         </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
       </dmn:rule>
       <dmn:rule id="_E43615CF-16C8-4331-B582-6FAEB7DE6BE3">
         <dmn:inputEntry id="_CDB252B4-7368-41A1-9B1F-DA965969F910">
@@ -90,6 +97,23 @@
         <dmn:outputEntry id="_5AA96CEE-D17C-4DF6-9397-48D32A1BD857">
           <dmn:text>"disk_cleanup"</dmn:text>
         </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_1199379C-F62E-4754-A70A-5DB2B927A32C">
+        <dmn:inputEntry id="_369D9A7B-AAAF-435D-9156-4C4024643EE1">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_96F8C35E-C3F4-4C4E-B015-FB4964A71BB6">
+          <dmn:text>"check-sudo-bug"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_3E12AC21-F222-493E-B1BB-F2DE57361F76">
+          <dmn:text>"baron-samedit-fix"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
       </dmn:rule>
     </dmn:decisionTable>
   </dmn:decision>
@@ -141,13 +165,13 @@
       </dmn:binding>
     </dmn:invocation>
   </dmn:decision>
-  <dmn:inputData id="_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" name="Frequency">
-    <dmn:extensionElements/>
-    <dmn:variable id="_126B8DD2-5F1C-4E86-96F9-215A90F67E9D" name="Frequency"/>
-  </dmn:inputData>
   <dmn:inputData id="_50291358-2DB2-4BFC-965C-548404A0023B" name="ApbRuns">
     <dmn:extensionElements/>
     <dmn:variable id="_B1B66D9F-A679-4F27-82F1-9FFA77922A85" name="ApbRuns" typeRef="ApbRuns"/>
+  </dmn:inputData>
+  <dmn:inputData id="_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" name="Frequency">
+    <dmn:extensionElements/>
+    <dmn:variable id="_126B8DD2-5F1C-4E86-96F9-215A90F67E9D" name="Frequency"/>
   </dmn:inputData>
   <dmn:businessKnowledgeModel id="_8AC337EA-37A8-4E10-A645-38B366C62514" name="Invoke playbook?">
     <dmn:extensionElements/>
@@ -169,44 +193,44 @@ count(apbRuns[hostName=sensuEvents.hostName and
     </dmn:encapsulatedLogic>
   </dmn:businessKnowledgeModel>
   <dmndi:DMNDI>
-    <dmndi:DMNDiagram>
+    <dmndi:DMNDiagram id="_2BF998B0-A648-4BF0-BDA3-E480A04EAFB1" name="DRG">
       <di:extension>
         <kie:ComponentsWidthsExtension>
           <kie:ComponentWidths dmnElementRef="_245678E1-B92A-4E4D-8A15-460F6C6FA71D">
-            <kie:width>50.0</kie:width>
-            <kie:width>161.0</kie:width>
-            <kie:width>206.0</kie:width>
-            <kie:width>250.0</kie:width>
-            <kie:width>100.0</kie:width>
+            <kie:width>50</kie:width>
+            <kie:width>161</kie:width>
+            <kie:width>206</kie:width>
+            <kie:width>250</kie:width>
+            <kie:width>100</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_2487B83C-DBF2-46F3-8C45-7559BC6A550B">
-            <kie:width>50.0</kie:width>
-            <kie:width>100.0</kie:width>
-            <kie:width>300.0</kie:width>
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>300</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_435F5B8F-6AE5-403F-80FC-27EBDC0B53D7"/>
           <kie:ComponentWidths dmnElementRef="_DF370838-957C-498E-9DEC-2310B3B9095A">
-            <kie:width>300.0</kie:width>
+            <kie:width>300</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_5984F94A-CE55-4A03-A0B2-98FB85DECE99">
-            <kie:width>300.0</kie:width>
+            <kie:width>300</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_AAD760CB-801A-4B2C-97A1-73D667AD7183">
-            <kie:width>300.0</kie:width>
+            <kie:width>300</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_3B62344C-E070-41AC-853B-D62D11767CA5">
-            <kie:width>300.0</kie:width>
+            <kie:width>300</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_59363FF1-D757-415A-A4E3-A52D760DA73F">
-            <kie:width>1202.0</kie:width>
+            <kie:width>1202</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_96F3014D-F474-4E69-A605-9C979F77552D">
-            <kie:width>50.0</kie:width>
-            <kie:width>1202.0</kie:width>
+            <kie:width>50</kie:width>
+            <kie:width>1202</kie:width>
           </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
-      <dmndi:DMNShape id="dmnshape-_CBC695F5-7FAD-4A66-8BE4-FD12A7D20F26" dmnElementRef="_CBC695F5-7FAD-4A66-8BE4-FD12A7D20F26" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_CBC695F5-7FAD-4A66-8BE4-FD12A7D20F26" dmnElementRef="_CBC695F5-7FAD-4A66-8BE4-FD12A7D20F26" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="232" green="232" blue="9"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -215,7 +239,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="558" y="346" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_16C2D4EB-211D-40EF-8323-1B7C409A7205" dmnElementRef="_16C2D4EB-211D-40EF-8323-1B7C409A7205" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_16C2D4EB-211D-40EF-8323-1B7C409A7205" dmnElementRef="_16C2D4EB-211D-40EF-8323-1B7C409A7205" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -224,7 +248,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="558" y="465" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_8F231DF5-F27F-4357-8536-85EDC5FF41D5" dmnElementRef="_8F231DF5-F27F-4357-8536-85EDC5FF41D5" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_8F231DF5-F27F-4357-8536-85EDC5FF41D5" dmnElementRef="_8F231DF5-F27F-4357-8536-85EDC5FF41D5" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="14" green="236" blue="244"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -233,7 +257,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="379" y="168" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_55210F26-19E5-4B5B-BA17-1EE73BC4AF69" dmnElementRef="_55210F26-19E5-4B5B-BA17-1EE73BC4AF69" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_55210F26-19E5-4B5B-BA17-1EE73BC4AF69" dmnElementRef="_55210F26-19E5-4B5B-BA17-1EE73BC4AF69" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="31" green="193" blue="225"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -242,7 +266,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="377" y="347" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_50291358-2DB2-4BFC-965C-548404A0023B" dmnElementRef="_50291358-2DB2-4BFC-965C-548404A0023B" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_50291358-2DB2-4BFC-965C-548404A0023B" dmnElementRef="_50291358-2DB2-4BFC-965C-548404A0023B" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="224" green="240" blue="18"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -251,7 +275,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="170.29906542056074" y="347" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" dmnElementRef="_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" dmnElementRef="_D9D4C7EE-6E52-4B5E-BE4E-046CB171994C" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -260,7 +284,7 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="198.59813084112147" y="465" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_8AC337EA-37A8-4E10-A645-38B366C62514" dmnElementRef="_8AC337EA-37A8-4E10-A645-38B366C62514" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_8AC337EA-37A8-4E10-A645-38B366C62514" dmnElementRef="_8AC337EA-37A8-4E10-A645-38B366C62514" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="252" green="19" blue="230"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
@@ -269,33 +293,33 @@ count(apbRuns[hostName=sensuEvents.hostName and
         <dc:Bounds x="377.29906542056074" y="476" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="dmnedge-_7E9521C1-9589-4EBE-BA35-BB615693464B" dmnElementRef="_7E9521C1-9589-4EBE-BA35-BB615693464B">
+      <dmndi:DMNEdge id="dmnedge-drg-_7E9521C1-9589-4EBE-BA35-BB615693464B" dmnElementRef="_7E9521C1-9589-4EBE-BA35-BB615693464B">
         <di:waypoint x="608" y="371"/>
         <di:waypoint x="429" y="218"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_3AE46438-F42D-4BA3-A83E-709F997DFED9" dmnElementRef="_3AE46438-F42D-4BA3-A83E-709F997DFED9">
+      <dmndi:DMNEdge id="dmnedge-drg-_3AE46438-F42D-4BA3-A83E-709F997DFED9" dmnElementRef="_3AE46438-F42D-4BA3-A83E-709F997DFED9">
         <di:waypoint x="427" y="372"/>
         <di:waypoint x="429" y="218"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_7F75B085-D097-458E-B356-F61CCA8D2DA8" dmnElementRef="_7F75B085-D097-458E-B356-F61CCA8D2DA8">
+      <dmndi:DMNEdge id="dmnedge-drg-_7F75B085-D097-458E-B356-F61CCA8D2DA8" dmnElementRef="_7F75B085-D097-458E-B356-F61CCA8D2DA8">
         <di:waypoint x="608" y="371"/>
         <di:waypoint x="427" y="397"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_1B60CC2B-8618-4D8E-8E96-170BDBB8D4D4" dmnElementRef="_1B60CC2B-8618-4D8E-8E96-170BDBB8D4D4">
+      <dmndi:DMNEdge id="dmnedge-drg-_1B60CC2B-8618-4D8E-8E96-170BDBB8D4D4" dmnElementRef="_1B60CC2B-8618-4D8E-8E96-170BDBB8D4D4">
         <di:waypoint x="220.29906542056074" y="372"/>
         <di:waypoint x="427" y="397"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_0F32FFB1-9B15-4EEA-BF03-64DEA8F032C8" dmnElementRef="_0F32FFB1-9B15-4EEA-BF03-64DEA8F032C8">
-        <di:waypoint x="427.29906542056074" y="501"/>
-        <di:waypoint x="377" y="372"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_A46F5F37-4C32-4703-85A1-15C099E514F1" dmnElementRef="_A46F5F37-4C32-4703-85A1-15C099E514F1">
+      <dmndi:DMNEdge id="dmnedge-drg-_A46F5F37-4C32-4703-85A1-15C099E514F1" dmnElementRef="_A46F5F37-4C32-4703-85A1-15C099E514F1">
         <di:waypoint x="248.59813084112147" y="490"/>
         <di:waypoint x="427" y="397"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-_DAFF7553-1792-4599-AB85-926C42BD2C26" dmnElementRef="_DAFF7553-1792-4599-AB85-926C42BD2C26">
+      <dmndi:DMNEdge id="dmnedge-drg-_DAFF7553-1792-4599-AB85-926C42BD2C26" dmnElementRef="_DAFF7553-1792-4599-AB85-926C42BD2C26">
         <di:waypoint x="608" y="490"/>
         <di:waypoint x="427" y="397"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_0F32FFB1-9B15-4EEA-BF03-64DEA8F032C8" dmnElementRef="_0F32FFB1-9B15-4EEA-BF03-64DEA8F032C8">
+        <di:waypoint x="427.29906542056074" y="501"/>
+        <di:waypoint x="377" y="372"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
